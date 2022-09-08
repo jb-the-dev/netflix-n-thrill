@@ -1,4 +1,5 @@
 const service = require("./shows-service");
+const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 /* This file contains the "business logic" */
 
@@ -69,8 +70,9 @@ async function list(req, res, next) {
   }
 
   module.exports = {
-    list,
-    create,
-    update,
-    destroy
+    list: asyncErrorBoundary(list),
+    create: [asyncErrorBoundary(hasRequiredProperties), asyncErrorBoundary(create)],
+    update: [asyncErrorBoundary(showExists), 
+        asyncErrorBoundary(hasRequiredProperties),asyncErrorBoundary(update)],
+    destroy: [asyncErrorBoundary(showExists), asyncErrorBoundary(destroy)]
   }
