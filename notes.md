@@ -27,6 +27,9 @@
 1. If `show_id` isn't explicitly added, the default create/post functionality seems to be starting at 1 for any new shows added. 
 2. Not fixed. Creating a new show currently only works when `show_id` is explicitly named and unique
 
+### Reading show_id:
+1. The showExists() validation that is calling the `service.read()` function is not currently working as expected, and thus preventing the PUT and DELETE functionality from currently working. Errors are thrown on Postman, and a show object is not being returned from the API call. Did not have time to deepdive to troubleshoot
+
 
 If there was more time: 
 - fixed bug with `show_id` on creating new shows

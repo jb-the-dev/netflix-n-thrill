@@ -10,6 +10,7 @@ function read(show_id){
     return knex("shows")
         .select("*")
         .where({ show_id })
+        // .then(data => console.log("YOOHOO", data))
         .first();
 }
 

@@ -6,6 +6,8 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 // VALIDATORS
 const showExists = (req, res, next) => {
     let show = service.read(req.params.show_id)
+    //! `show` is not returning as a data object
+    console.log("SHOW", show)
     if (show) {
         res.locals.show = show;
         return next();
@@ -29,7 +31,6 @@ const VALID_PROPERTIES = [
     const { data = {} } = req.body;
   
     VALID_PROPERTIES.forEach((property) => {
-      // console.log("property", property)
       if (!data[property]) {
         return next({
           status: 400,
@@ -66,7 +67,7 @@ async function list(req, res, next) {
   async function update(req, res, next) {
     const { show_id } = res.locals.show;
     const showData = req.body.data;
-    // console.log("DATA??", req.body.data);
+    console.log("DATA??", req.body.data);
     const updatedShow = {
       ...showData,
       show_id: show_id,
