@@ -2,6 +2,7 @@ import './App.css';
 import ShowList from './shows/ShowList';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import CreateShow from './shows/CreateShow';
+import EditShow from './shows/EditShow';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ShowList />}/>
           <Route path="/new" element={<CreateShow />} />
+          <Route path="/:show_id/edit" element={<EditShow />} />
         </Routes>
       </div>
     </Router>

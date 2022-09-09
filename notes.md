@@ -10,7 +10,7 @@
 ## Frontend routes:
 - /shows --> GET list of shows rendered in table format    --> DELETE show by clicking on a button associated with it
 - /shows/new --> POST new show in form on new page,
-- /shows/:show_id --> PUT update show using same form as create, but populating data already in it
+- /shows/:show_id/edit --> PUT update show using same form as create, but populating data already in it
 
 ## Blockers/Troubleshooting:
 ### Seeding:
