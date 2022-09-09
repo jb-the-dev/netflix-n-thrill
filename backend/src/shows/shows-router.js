@@ -9,7 +9,10 @@ router.route("/")
     .post(controller.create)
     .all(methodNotAllowed)
     
-    router.route("/:show_id")
+router.route("/:show_id")
+    .get(controller.read)
     .put(controller.update)
     .delete(controller.destroy)
     .all(methodNotAllowed)
+
+module.exports = router;

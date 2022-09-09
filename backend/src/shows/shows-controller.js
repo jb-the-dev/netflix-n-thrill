@@ -14,12 +14,16 @@ const showExists = (req, res, next) => {
 }
 
 const VALID_PROPERTIES = [
-    "first_name",
-    "last_name",
-    "mobile_number",
-    "reservation_date",
-    "reservation_time",
-    "people",
+    "show_id",
+    "type",
+    "title",
+    "director",
+    "country",
+    "date_added",
+    "release_year",
+    "rating",
+    "duration",
+    "listed_in",
   ];
 
   async function hasRequiredProperties(req, res, next) {
@@ -40,10 +44,11 @@ const VALID_PROPERTIES = [
 
 // HANDLERS
 async function list(req, res, next) {
-    if (req.query) return next();
-    res.json({
-      data: await service.list(),
-    });
+    res.json({ data: await service.list() });
+  }
+
+  function read(req, res) {
+    res.json({ data: res.locals.show });
   }
 
   async function create(req, res) {
@@ -71,6 +76,7 @@ async function list(req, res, next) {
 
   module.exports = {
     list: asyncErrorBoundary(list),
+    read: [asyncErrorBoundary(showExists), read],
     create: [asyncErrorBoundary(hasRequiredProperties), asyncErrorBoundary(create)],
     update: [asyncErrorBoundary(showExists), 
         asyncErrorBoundary(hasRequiredProperties),asyncErrorBoundary(update)],
