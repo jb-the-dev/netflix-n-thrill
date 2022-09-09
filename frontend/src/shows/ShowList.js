@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ShowItem from "./ShowItem";
-import { listShows } from "./utils/api";
+import { listShows } from "../utils/api";
+import { useNavigate } from "react-router-dom";
 
 export default function ShowList({ deleteShow }) {
   const [shows, setShows] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getShows() {
@@ -22,6 +24,7 @@ export default function ShowList({ deleteShow }) {
 
   return (
     <div className="Show-list">
+      <button onClick={() => navigate("/new")}>Add Show</button>
       <table>
         <thead>
           <tr>
@@ -38,12 +41,14 @@ export default function ShowList({ deleteShow }) {
         </thead>
         <tbody>
           {/* Converts Shows array into HTML elements */}
-          {shows && shows.map((show, index) => {
-            return <ShowItem
-              key={index}
-              show={show}
-              deleteShow={() => deleteShow(index)}
-            />  
+          {shows.length === 0 
+            ? "Loading shows..." 
+            : shows.map((show, index) => {
+              return <ShowItem
+                key={index}
+                show={show}
+                deleteShow={() => deleteShow(index)}
+              />  
           })}
         </tbody>
       </table>

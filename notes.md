@@ -29,11 +29,14 @@
 
 
 If there was more time: 
+- fixed bug with `show_id` on creating new shows
 - Would've added functionality for sorting and/or filtering movies by some of their different properties (e.g: release_date, director, country)
 - Would've added some tests (unit testing in the back to make sure POST and PUT functionality input matches output; unit test that validators actually stop invalid data (e.g: throw in some invalid properties)). Not familiar with e2e testing yet, wouldn't know where to start.
 - Would've added a pop-up modal after hitting submit on new/update show form. Taught concept using window.confirm(), but have been advised there's better ways to do this using features within a UI library
-- Try a different UI library like antdesign, chakra, or tailwind. So far, only familiar with some basic bootstrap
+- Try a different UI library like tailwind or chakra. So far, only familiar with some basic bootstrap
 - Upgraded it cosmetically by picking a color scheme & font, 
 - Refactored (most likely modularizing, examining SOC) and added more descriptive comments along the way, if needed
 - Taken screenshots and updated the github with a delicious, descriptive README
-- 
+- Updated the form to:
+-- have dropdowns for Country, Rating, Release Year, and Listed In (would've been nice to have multiple options selectable on Listed In)
+-- change date_added to `type="date"` and tested to make sure data travels between front and backend accurately

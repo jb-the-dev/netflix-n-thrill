@@ -7,3 +7,7 @@ const API_BASE_URL =
 export async function listShows() {
     return axios.get(`${API_BASE_URL}/shows`)
 }
+
+export async function createShow(newShow) {
+    return axios.post(`${API_BASE_URL}/shows`, newShow)
+  }
