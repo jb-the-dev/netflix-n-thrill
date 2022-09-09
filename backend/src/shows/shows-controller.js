@@ -14,7 +14,6 @@ const showExists = (req, res, next) => {
 }
 
 const VALID_PROPERTIES = [
-    "show_id",
     "type",
     "title",
     "director",
@@ -52,9 +51,16 @@ async function list(req, res, next) {
   }
 
   async function create(req, res) {
+    console.log("data", req.body.data)
     let newShow = await service.create(req.body.data);
   
-    res.status(201).json({ data: newShow });
+
+    //NB! currently only functional in Postman
+    res.status(201).json({ data: {
+      ...newShow,
+      show_id: newShow.show_id + 8810
+      }
+     });
   }
 
   async function update(req, res, next) {
