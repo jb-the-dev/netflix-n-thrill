@@ -1,4 +1,10 @@
+import { useLocation } from "react-router-dom";
+
 export default function ShowForm({handleSubmit, handleCancel}) {
+  const { pathname } = useLocation()
+
+  // console.log("location", location)
+
 
     return (
         <>
@@ -88,7 +94,7 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 className="form-control" 
                 placeholder="" 
                 required />       
-            <button type="submit" className="btn btn-primary mb-2">Submit</button>
+            <button type="submit" className="btn btn-primary mb-2">{pathname.includes("new") ? "Add Movie" : "Update Movie"}</button>
             <button className="btn btn-danger" onClick={handleCancel}>Cancel</button>
           </form>
         </>
