@@ -15,7 +15,7 @@ exports.up = function(knex) {
       table.string("duration").notNullable();
       table.string("listed_in").notNullable();
       table.timestamps(true, true);
-    })
+    }).raw('ALTER SEQUENCE shows_show_id_seq RESTART WITH 8808')
 };
 
 /**
