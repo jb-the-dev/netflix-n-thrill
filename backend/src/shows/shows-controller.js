@@ -4,8 +4,9 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 /* This file contains the "business logic" */
 
 // VALIDATORS
-const showExists = (req, res, next) => {
-    let show = service.read(req.params.show_id)
+async function showExists(req, res, next) {
+    const show_id = req.params.show_id
+    let show = await service.read(show_id)
     //! `show` is not returning as a data object
     console.log("SHOW", show)
     if (show) {
@@ -59,7 +60,7 @@ async function list(req, res, next) {
     //NB! currently only functional in Postman
     res.status(201).json({ data: {
       ...newShow,
-      show_id: newShow.show_id + 8810
+      show_id: newShow.show_id
       }
      });
   }
@@ -76,8 +77,10 @@ async function list(req, res, next) {
   }
 
   async function destroy(req, res, next) {
-    const { show } = res.locals;
-    await service.delete(show.show_id);
+    // console.log("req.params:", req.params)
+    const show_id = req.params.show_id;
+    // const { show } = res.locals;
+    await service.destroy(show_id);
     res.sendStatus(204);
   }
 

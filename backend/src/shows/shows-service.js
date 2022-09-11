@@ -11,6 +11,7 @@ function read(show_id){
         .select("*")
         .where({ show_id })
         // .then(data => console.log("YOOHOO", data))
+        // .then(createdRecords => createdRecords[0])
         .first();
 }
 
