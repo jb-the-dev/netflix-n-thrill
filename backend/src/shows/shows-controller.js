@@ -7,8 +7,6 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 async function showExists(req, res, next) {
     const show_id = req.params.show_id
     let show = await service.read(show_id)
-    //! `show` is not returning as a data object
-    console.log("SHOW", show)
     if (show) {
         res.locals.show = show;
         return next();
@@ -53,11 +51,8 @@ async function list(req, res, next) {
   }
 
   async function create(req, res) {
-    console.log("data", req.body.data)
     let newShow = await service.create(req.body.data);
-  
 
-    //NB! currently only functional in Postman
     res.status(201).json({ data: {
       ...newShow,
       show_id: newShow.show_id
@@ -68,7 +63,7 @@ async function list(req, res, next) {
   async function update(req, res, next) {
     const { show_id } = res.locals.show;
     const showData = req.body.data;
-    console.log("DATA??", req.body.data);
+
     const updatedShow = {
       ...showData,
       show_id: show_id,
@@ -77,9 +72,7 @@ async function list(req, res, next) {
   }
 
   async function destroy(req, res, next) {
-    // console.log("req.params:", req.params)
     const show_id = req.params.show_id;
-    // const { show } = res.locals;
     await service.destroy(show_id);
     res.sendStatus(204);
   }

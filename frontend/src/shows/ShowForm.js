@@ -1,10 +1,8 @@
 import { useLocation } from "react-router-dom";
 
-export default function ShowForm({handleSubmit, handleCancel}) {
+export default function ShowForm({ handleSubmit, handleCancel, showData = {} }) {
   const { pathname } = useLocation()
-
-  // console.log("location", location)
-
+  const { data } = showData
 
     return (
         <>
@@ -18,6 +16,7 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 type="text" 
                 className="form-control" 
                 placeholder="" 
+                defaultValue={data?.data.type || ""}
                 required />
             <label htmlFor="title" className="form-label">
               Title
@@ -28,6 +27,7 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 type="text" 
                 className="form-control" 
                 placeholder="" 
+                defaultValue={data?.data.title || ""}
                 required />        
             <label htmlFor="director" className="form-label">
               Director
@@ -37,6 +37,7 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 name="director" 
                 type="text" 
                 className="form-control"
+                defaultValue={data?.data.director || ""}
                 required />        
             <label htmlFor="country" className="form-label">
               Country
@@ -46,6 +47,7 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 name="country" 
                 type="text" 
                 className="form-control" 
+                defaultValue={data?.data.country || ""}
                 required />        
             <label htmlFor="date_added" className="form-label">
                Date Added
@@ -55,6 +57,7 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 name="date_added" 
                 type="text" 
                 className="form-control" 
+                defaultValue={data?.data.date_added || ""}
                 required />        
             <label htmlFor="release_year" className="form-label">
               Release Year
@@ -64,6 +67,7 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 name="release_year" 
                 type="text" 
                 className="form-control" 
+                defaultValue={data?.data.release_year || ""}
                 placeholder="" 
                 required />   
             <label htmlFor="rating" className="form-label">
@@ -73,7 +77,8 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 id="rating" 
                 name="rating" 
                 type="text" 
-                className="form-control" 
+                className="form-control"
+                defaultValue={data?.data.rating || ""}
                 required />        
             <label htmlFor="duration" className="form-label">
                 Duration
@@ -82,7 +87,8 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 id="duration" 
                 name="duration" 
                 type="text" 
-                className="form-control" 
+                className="form-control"
+                defaultValue={data?.data.duration || ""}
                 required />        
             <label htmlFor="listed_in" className="form-label">
               Listed In
@@ -92,6 +98,7 @@ export default function ShowForm({handleSubmit, handleCancel}) {
                 name="listed_in" 
                 type="text" 
                 className="form-control" 
+                defaultValue={data?.data.listed_in || ""}
                 placeholder="" 
                 required />       
             <button type="submit" className="btn btn-primary mb-2">{pathname.includes("new") ? "Add Movie" : "Update Movie"}</button>
