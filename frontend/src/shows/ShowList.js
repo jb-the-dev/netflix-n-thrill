@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
 import ShowItem from "./ShowItem";
-import { listShows } from "../utils/api";
+import { listShows, deleteShow } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
-export default function ShowList({ deleteShow }) {
+export default function ShowList() {
   const [shows, setShows] = useState([]);
   const [userInput, setUserInput] = useState();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function getShows() {
-      try {
-        const response = await listShows()
-        let showsData = response.data.data
-        setShows(showsData)
-      } catch (error) {
-        console.error(error)
-      }
+  async function getShows() {
+    try {
+      const response = await listShows()
+      let showsData = response.data.data
+      setShows(showsData)
+    } catch (error) {
+      console.error(error)
     }
-
+  }
+  useEffect(() => {
     getShows()
   }, [])
 
@@ -29,6 +28,18 @@ export default function ShowList({ deleteShow }) {
     event.preventDefault();
     let text = event.target.value
     setUserInput(text)
+  }
+
+  const handleDelete = show => {
+    async function showDeleter() {
+      try {
+        await deleteShow(show.show_id)
+        await getShows()
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    showDeleter()
   }
 
   return (
@@ -62,7 +73,7 @@ export default function ShowList({ deleteShow }) {
               return <ShowItem
                 key={index}
                 show={show}
-                deleteShow={() => deleteShow(index)}
+                handleDelete={handleDelete}
               />  
           })}
         </tbody>

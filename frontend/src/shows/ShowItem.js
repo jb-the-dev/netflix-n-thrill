@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+
 // HTML template to use with each show
 
-export default function ShowItem({show, deleteShow}){
+export default function ShowItem({show, handleDelete}){
     const navigate = useNavigate();
 
     return (
@@ -19,7 +20,7 @@ export default function ShowItem({show, deleteShow}){
                 <td>{show?.duration}</td>
                 <td>{show?.listed_in}</td>
                 <td>
-                    <button name="delete" onClick={deleteShow}>Delete</button>
+                    <button name="delete" onClick={() => handleDelete(show)}>Delete</button>
                     <button onClick={() => navigate(`/shows/${show.show_id}/edit`)}>Edit</button>
                 </td>
             </tr>
